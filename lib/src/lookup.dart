@@ -13,7 +13,7 @@ class Lookup<TKey, TElement> extends Iterable<IGrouping<TKey, TElement>>
     implements ILookup<TKey, TElement> {
   IGrouping<TKey, TElement> _current;
 
-  Map<TKey, IGrouping<TKey, TElement>> _groupings;
+  final Map<TKey, IGrouping<TKey, TElement>> _groupings;
 
   Lookup._internal(this._groupings);
 

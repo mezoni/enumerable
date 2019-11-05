@@ -22,7 +22,7 @@ class _OrderedIterable<TElement, TSortKey> extends Iterable<TElement>
 
   TSortKey Function(TElement) _keySelector;
 
-  _OrderedIterable<TElement, Object> _parent;
+  final _OrderedIterable<TElement, Object> _parent;
 
   Iterable<TElement> _source;
 

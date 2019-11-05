@@ -6,7 +6,7 @@ abstract class IGrouping<TKey, TElement> implements Iterable<TElement> {
 
 class _Grouping<TKey, TElement> extends Iterable<TElement>
     implements IGrouping<TKey, TElement> {
-  Iterable<TElement> _elements;
+  final Iterable<TElement> _elements;
 
   TKey _key;
 

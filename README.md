@@ -3,7 +3,7 @@ enumerable
 
 Enumerable collections for Dart language (inspired by Microsoft LINQ).
 
-Version 0.0.1
+Version 0.1.0
 
 Classes  
 
@@ -19,8 +19,7 @@ Methods
 aggregate  
 all  
 any  
-asIterable  
-asQueryable  
+appwnd  
 average  
 cast  
 concat  
@@ -44,8 +43,7 @@ min
 ofType  
 orderBy  
 orderByDescending  
-range  
-repeat  
+prepend  
 select  
 selectMany  
 sequenceEqual  
@@ -56,12 +54,9 @@ skipWhile
 sum  
 take  
 takeWhile  
-toCollection  
-toDictionary  
-toList  
 toLookup  
 union  
-where
+where  
 zip
 
 Other methods

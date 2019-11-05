@@ -76,7 +76,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return true;
   }
 
-  bool any$([bool Function(TSource) predicate]) {
+  bool any$1([bool Function(TSource) predicate]) {
     if (predicate == null) {
       return iterator.moveNext();
     }
@@ -147,7 +147,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return sum as double;
   }
 
-  Iterable<TResult> cast$<TResult>() {
+  Iterable<TResult> cast$1<TResult>() {
     Iterable<TResult> generator() sync* {
       final it = iterator;
       while (it.moveNext()) {
@@ -178,7 +178,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
-  bool contains$(TSource value, [IEqualityComparer<TSource> comparer]) {
+  bool contains$1(TSource value, [IEqualityComparer<TSource> comparer]) {
     if (comparer == null) {
       comparer = EqualityComparer<TSource>();
     }
@@ -254,7 +254,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
-  TSource elementAt$(int index) {
+  TSource elementAt$1(int index) {
     if (index == null) {
       throw ArgumentError.notNull("index");
     }
@@ -333,7 +333,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
-  TSource first$([bool Function(TSource) predicate]) {
+  TSource first$1([bool Function(TSource) predicate]) {
     final it = iterator;
     if (predicate == null) {
       if (it.moveNext()) {
@@ -555,7 +555,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
-  Iterable<TResult> join$<TInner, TKey, TResult>(
+  Iterable<TResult> join$1<TInner, TKey, TResult>(
       Iterable<TInner> inner,
       TKey Function(TSource) outerKeySelector,
       TKey Function(TInner) innerKeySelector,
@@ -613,7 +613,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
-  TSource last$([bool Function(TSource) predicate]) {
+  TSource last$1([bool Function(TSource) predicate]) {
     final it = iterator;
     var length = 0;
     TSource result;
@@ -897,7 +897,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return true;
   }
 
-  TSource single$([bool Function(TSource) predicate]) {
+  TSource single$1([bool Function(TSource) predicate]) {
     TSource result;
     final it = iterator;
     if (predicate == null) {
@@ -965,7 +965,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return result;
   }
 
-  Iterable<TSource> skip(int count) {
+  Iterable<TSource> skip$1(int count) {
     if (count == null) {
       throw ArgumentError.notNull("count");
     }
@@ -987,7 +987,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
-  Iterable<TSource> skipWhile(bool Function(TSource) predicate) {
+  Iterable<TSource> skipWhile$1(bool Function(TSource) predicate) {
     if (predicate == null) {
       throw ArgumentError.notNull("predicate");
     }
@@ -1010,7 +1010,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
-  Iterable<TSource> skipWhile$1(bool Function(TSource, int) predicate) {
+  Iterable<TSource> skipWhile$2(bool Function(TSource, int) predicate) {
     if (predicate == null) {
       throw ArgumentError.notNull("predicate");
     }
@@ -1042,7 +1042,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return _computeNullable<TResult>("sum", (r, v) => r + v, selector);
   }
 
-  Iterable<TSource> take$(int count) {
+  Iterable<TSource> take$1(int count) {
     if (count == null) {
       throw ArgumentError.notNull("count");
     }
@@ -1061,7 +1061,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
-  Iterable<TSource> takeWhile$(bool Function(TSource) predicate) {
+  Iterable<TSource> takeWhile$1(bool Function(TSource) predicate) {
     if (predicate == null) {
       throw ArgumentError.notNull("predicate");
     }
@@ -1080,7 +1080,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
-  Iterable<TSource> takeWhile$1(bool Function(TSource, int) predicate) {
+  Iterable<TSource> takeWhile$2(bool Function(TSource, int) predicate) {
     if (predicate == null) {
       throw ArgumentError.notNull("predicate");
     }
@@ -1243,7 +1243,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
-  Iterable<TSource> where$(bool Function(TSource) predicate) {
+  Iterable<TSource> where$1(bool Function(TSource) predicate) {
     if (predicate == null) {
       throw ArgumentError.notNull("predicate");
     }
@@ -1261,7 +1261,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
-  Iterable<TSource> whereEx$1(bool Function(TSource, int) predicate) {
+  Iterable<TSource> where$2(bool Function(TSource, int) predicate) {
     if (predicate == null) {
       throw ArgumentError.notNull("predicate");
     }

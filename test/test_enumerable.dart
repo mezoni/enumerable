@@ -144,42 +144,42 @@ void _testAny() {
     {
       var data = <int>[];
       var expected = false;
-      var result = data.any$();
+      var result = data.any$1();
       expect(result, expected);
     }
     //
     {
       var data = [0];
       var expected = true;
-      var result = data.any$();
+      var result = data.any$1();
       expect(result, expected);
     }
     //
     {
       var data = [0];
       var expected = true;
-      var result = data.any$((e) => e == 0);
+      var result = data.any$1((e) => e == 0);
       expect(result, expected);
     }
     //
     {
       var data = [0];
       var expected = false;
-      var result = data.any$((e) => e != 0);
+      var result = data.any$1((e) => e != 0);
       expect(result, expected);
     }
     //
     {
       var data = [1, 0];
       var expected = true;
-      var result = data.any$((e) => e == 0);
+      var result = data.any$1((e) => e == 0);
       expect(result, expected);
     }
     //
     {
       var data = [0, 0];
       var expected = false;
-      var result = data.any$((e) => e != 0);
+      var result = data.any$1((e) => e != 0);
       expect(result, expected);
     }
   });
@@ -220,7 +220,7 @@ void _testCast() {
     {
       var data = <Object>["mango", "apple", "lemon"];
       var expected = ["mango", "apple", "lemon"];
-      var query = data.cast$<String>();
+      var query = data.cast$1<String>();
       var result = query;
       expect(result, expected);
     }
@@ -254,20 +254,20 @@ void _testContains() {
     {
       var data = [0, 1, 2, 3, 4];
       var expected = true;
-      var result = data.contains$(2);
+      var result = data.contains$1(2);
       expect(result, expected);
     }
     //
     {
       var data = [0, 1, 2, 3, 4];
-      var result = data.contains$(5);
+      var result = data.contains$1(5);
       var expected = false;
       expect(result, expected);
     }
     //
     {
       var data = <int>[];
-      var result = data.contains$(null);
+      var result = data.contains$1(null);
       var expected = false;
       expect(result, expected);
     }
@@ -353,7 +353,7 @@ void _testElementAt() {
     {
       var data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
       var expected = 5;
-      var result = data.elementAt$(5);
+      var result = data.elementAt$1(5);
       expect(result, expected);
     }
   });
@@ -404,14 +404,14 @@ void _testFirst() {
     {
       var data = [0, 1];
       var expected = 0;
-      var result = data.first$();
+      var result = data.first$1();
       expect(result, expected);
     }
     //
     {
       var data = [0, 1];
       var expected = 1;
-      var result = data.first$((e) => e > 0);
+      var result = data.first$1((e) => e > 0);
       expect(result, expected);
     }
   });
@@ -461,9 +461,9 @@ void _testGroupBy() {
     {
       var query = pets.groupBy((pet) => pet.age);
       var expected = {
-        1: pets.where$((pet) => pet.age == 1).toList(),
-        2: pets.where$((pet) => pet.age == 2).toList(),
-        3: pets.where$((pet) => pet.age == 3).toList()
+        1: pets.where$1((pet) => pet.age == 1).toList(),
+        2: pets.where$1((pet) => pet.age == 2).toList(),
+        3: pets.where$1((pet) => pet.age == 3).toList()
       };
 
       var result = <int, List<Pet>>{};
@@ -481,14 +481,17 @@ void _testGroupBy() {
       var query = pets.groupBy$1((e) => e.age, (e) => e.name);
       var expected = {
         1: pets
-            .where$((pet) => pet.age == 1)
+            .where$1((pet) => pet.age == 1)
             .select((pet) => pet.name)
             .toList(),
         2: pets
-            .where$((pet) => pet.age == 2)
+            .where$1((pet) => pet.age == 2)
             .select((pet) => pet.name)
             .toList(),
-        3: pets.where$((pet) => pet.age == 3).select((pet) => pet.name).toList()
+        3: pets
+            .where$1((pet) => pet.age == 3)
+            .select((pet) => pet.name)
+            .toList()
       };
 
       var result = <int, List<String>>{};
@@ -541,23 +544,23 @@ void _testGroupJoin() {
               [petOwner, pets.select((pet) => pet.name).toList()]);
       var expected = [
         [
-          petOwners.where$((petOwner) => petOwner.name == "a").single$(),
+          petOwners.where$1((petOwner) => petOwner.name == "a").single$1(),
           pets
-              .where$((pet) => pet.owner.name == "a")
+              .where$1((pet) => pet.owner.name == "a")
               .select((pet) => pet.name)
               .toList()
         ],
         [
-          petOwners.where$((petOwner) => petOwner.name == "b").single$(),
+          petOwners.where$1((petOwner) => petOwner.name == "b").single$1(),
           pets
-              .where$((pet) => pet.owner.name == "b")
+              .where$1((pet) => pet.owner.name == "b")
               .select((pet) => pet.name)
               .toList()
         ],
         [
-          petOwners.where$((petOwner) => petOwner.name == "c").single$(),
+          petOwners.where$1((petOwner) => petOwner.name == "c").single$1(),
           pets
-              .where$((pet) => pet.owner.name == "c")
+              .where$1((pet) => pet.owner.name == "c")
               .select((pet) => pet.name)
               .toList()
         ],
@@ -594,7 +597,7 @@ void _testIntersect() {
 void _testJoin() {
   test("Join", () {
     {
-      var query = petOwners.join$(
+      var query = petOwners.join$1(
           pets,
           (petOwner) => petOwner,
           (pet) => pet.owner,
@@ -618,14 +621,14 @@ void _testLast() {
     {
       var data = [0, 1];
       var expected = 1;
-      var result = data.last$();
+      var result = data.last$1();
       expect(result, expected);
     }
     //
     {
       var data = [0, 1, 2, 3];
       var expected = 3;
-      var result = data.last$((e) => e > 0);
+      var result = data.last$1((e) => e > 0);
       expect(result, expected);
     }
   });
@@ -942,14 +945,14 @@ void _testSingle() {
     {
       var data = [0];
       var expected = 0;
-      var result = data.single$();
+      var result = data.single$1();
       expect(result, expected);
     }
     //
     {
       var data = [0, 10, 20, 30];
       var expected = 20;
-      var result = data.single$((e) => e > 10 && e < 30);
+      var result = data.single$1((e) => e > 10 && e < 30);
       expect(result, expected);
     }
     //
@@ -1052,7 +1055,7 @@ void _testSkipWhile() {
     {
       var data = ["a", "b", "c"];
       var expected = ["b", "c"];
-      var query = data.skipWhile$1((str, i) => str.length > i);
+      var query = data.skipWhile$2((str, i) => str.length > i);
       var result = query;
       expect(result, expected);
     }
@@ -1160,7 +1163,7 @@ void _testTakeWhile() {
     {
       var data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
       var expected = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-      var query = data.takeWhile$1((e, i) => e == i);
+      var query = data.takeWhile$2((e, i) => e == i);
       var result = query;
       expect(result, expected);
     }
@@ -1300,12 +1303,12 @@ void _testToLookup() {
     {
       var query = pets.toLookup((pet) => pet.owner);
       var expected = {
-        petOwners.where$((petOwner) => petOwner.name == "a").single$():
-            pets.where$((pet) => pet.owner.name == "a").toList(),
-        petOwners.where$((petOwner) => petOwner.name == "b").single$():
-            pets.where$((pet) => pet.owner.name == "b").toList(),
-        petOwners.where$((petOwner) => petOwner.name == "c").single$():
-            pets.where$((pet) => pet.owner.name == "c").toList()
+        petOwners.where$1((petOwner) => petOwner.name == "a").single$1():
+            pets.where$1((pet) => pet.owner.name == "a").toList(),
+        petOwners.where$1((petOwner) => petOwner.name == "b").single$1():
+            pets.where$1((pet) => pet.owner.name == "b").toList(),
+        petOwners.where$1((petOwner) => petOwner.name == "c").single$1():
+            pets.where$1((pet) => pet.owner.name == "c").toList()
       };
       var result = <PetOwner, List<Pet>>{};
       for (var group in query) {
@@ -1321,16 +1324,16 @@ void _testToLookup() {
     {
       var query = pets.toLookup$1((pet) => pet.owner, (pet) => pet.name);
       var expected = {
-        petOwners.where$((petOwner) => petOwner.name == "a").single$(): pets
-            .where$((pet) => pet.owner.name == "a")
+        petOwners.where$1((petOwner) => petOwner.name == "a").single$1(): pets
+            .where$1((pet) => pet.owner.name == "a")
             .select((pet) => pet.name)
             .toList(),
-        petOwners.where$((petOwner) => petOwner.name == "b").single$(): pets
-            .where$((pet) => pet.owner.name == "b")
+        petOwners.where$1((petOwner) => petOwner.name == "b").single$1(): pets
+            .where$1((pet) => pet.owner.name == "b")
             .select((pet) => pet.name)
             .toList(),
-        petOwners.where$((petOwner) => petOwner.name == "c").single$(): pets
-            .where$((pet) => pet.owner.name == "c")
+        petOwners.where$1((petOwner) => petOwner.name == "c").single$1(): pets
+            .where$1((pet) => pet.owner.name == "c")
             .select((pet) => pet.name)
             .toList()
       };
@@ -1374,7 +1377,7 @@ void _testWhere() {
     {
       var data = [0, 1, 2, 3, 4, 3, 2, 1, 0];
       var expected = [0, 1, 2, 2, 1, 0];
-      var query = data.where$((e) => e < 3);
+      var query = data.where$1((e) => e < 3);
       var result = query;
       expect(result, expected);
     }
@@ -1382,7 +1385,7 @@ void _testWhere() {
     {
       var data = [0, 1, 2, 3, 4, 3, 2, 1, 0];
       var expected = [0, 1, 2, 3, 4];
-      var query = data.whereEx$1((e, i) => e == i);
+      var query = data.where$2((e, i) => e == i);
       var result = query;
       expect(result, expected);
     }
