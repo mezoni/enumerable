@@ -1,9 +1,9 @@
 enumerable
 =======
 
-Enumerable collections for Dart language (inspired by Microsoft LINQ).
+The `Enumerable` static methods extension on `Iterable` (inspired by Microsoft Enumerable).
 
-Version 0.1.0
+Version 0.1.1
 
 Classes  
 

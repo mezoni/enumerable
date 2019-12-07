@@ -33,44 +33,45 @@ class _OrderedIterable<TElement, TSortKey> extends Iterable<TElement>
       bool descending,
       this._parent) {
     if (source == null) {
-      throw ArgumentError.notNull("source");
+      throw ArgumentError.notNull('source');
     }
 
     if (keySelector == null) {
-      throw ArgumentError.notNull("keySelector");
+      throw ArgumentError.notNull('keySelector');
     }
 
     if (descending == null) {
-      throw ArgumentError.notNull("descending");
+      throw ArgumentError.notNull('descending');
     }
 
-    if (comparer == null) {
-      comparer = Comparer.getDefault<TSortKey>();
-    }
-
+    comparer ??= Comparer.getDefault<TSortKey>();
     _comparer = comparer;
     _descending = descending;
     _keySelector = keySelector;
     _source = source;
   }
 
+  @override
   Iterator<TElement> get iterator {
     return _orderAll().iterator;
   }
 
+  @override
   IOrderedIterable<TElement> createOrderedEnumerable<TKey>(
       TKey Function(TElement) keySelector,
       IComparer<TKey> comparer,
       bool descending) {
     return _OrderedIterable<TElement, TKey>(
-        this._source, keySelector, comparer, descending, this);
+        _source, keySelector, comparer, descending, this);
   }
 
+  @override
   IOrderedIterable<TElement> thenBy<TKey>(TKey Function(TElement) keySelector,
       [IComparer<TKey> comparer]) {
     return createOrderedEnumerable<TKey>(keySelector, comparer, false);
   }
 
+  @override
   IOrderedIterable<TElement> thenByDescending<TKey>(
       TKey Function(TElement) keySelector,
       [IComparer<TKey> comparer]) {

@@ -3,7 +3,7 @@ part of '../enumerable.dart';
 extension Enumerable<TSource> on Iterable<TSource> {
   TSource aggregate(TSource Function(TSource, TSource) func) {
     if (func == null) {
-      throw ArgumentError.notNull("func");
+      throw ArgumentError.notNull('func');
     }
 
     var cond = false;
@@ -28,7 +28,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
   TAccumulate aggregate$1<TAccumulate>(
       TAccumulate seed, TAccumulate Function(TAccumulate, TSource) func) {
     if (func == null) {
-      throw ArgumentError.notNull("func");
+      throw ArgumentError.notNull('func');
     }
 
     var acc = seed;
@@ -45,11 +45,11 @@ extension Enumerable<TSource> on Iterable<TSource> {
       TAccumulate Function(TAccumulate, TSource) func,
       TResult Function(TAccumulate) resultSelector) {
     if (func == null) {
-      throw ArgumentError.notNull("func");
+      throw ArgumentError.notNull('func');
     }
 
     if (resultSelector == null) {
-      throw ArgumentError.notNull("resultSelector");
+      throw ArgumentError.notNull('resultSelector');
     }
 
     var acc = seed;
@@ -63,7 +63,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
 
   bool all(bool Function(TSource) predicate) {
     if (predicate == null) {
-      throw ArgumentError.notNull("predicate");
+      throw ArgumentError.notNull('predicate');
     }
 
     final it = iterator;
@@ -106,7 +106,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
 
   double average([num Function(TSource) selector]) {
     if (this is! Iterable<num>) {
-      _errorUnableToCompute<TSource>("average");
+      _errorUnableToCompute<TSource>('average');
     }
 
     var count = 0;
@@ -116,10 +116,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
       while (it.moveNext()) {
         final current = it.current;
         if (current != null) {
-          if (sum == null) {
-            sum = current;
-          }
-
+          sum ??= current;
           sum += current;
         }
 
@@ -130,9 +127,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
       while (it.moveNext()) {
         final value = selector(it.current);
         if (value != null) {
-          if (sum == null) {
-            sum = value;
-          }
+          sum ??= value;
           sum += value;
         }
 
@@ -160,7 +155,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
 
   Iterable<TSource> concat(Iterable<TSource> other) {
     if (other == null) {
-      throw ArgumentError.notNull("other");
+      throw ArgumentError.notNull('other');
     }
 
     Iterable<TSource> generator() sync* {
@@ -179,10 +174,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
   }
 
   bool contains$1(TSource value, [IEqualityComparer<TSource> comparer]) {
-    if (comparer == null) {
-      comparer = EqualityComparer<TSource>();
-    }
-
+    comparer ??= EqualityComparer<TSource>();
     final it = iterator;
     while (it.moveNext()) {
       if (comparer.equals(it.current, value)) {
@@ -235,10 +227,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
   }
 
   Iterable<TSource> distinct([IEqualityComparer<TSource> comparer]) {
-    if (comparer == null) {
-      comparer = EqualityComparer<TSource>();
-    }
-
+    comparer ??= EqualityComparer<TSource>();
     Iterable<TSource> generator() sync* {
       final hashSet =
           HashSet(equals: comparer.equals, hashCode: comparer.getHashCode);
@@ -256,11 +245,11 @@ extension Enumerable<TSource> on Iterable<TSource> {
 
   TSource elementAt$1(int index) {
     if (index == null) {
-      throw ArgumentError.notNull("index");
+      throw ArgumentError.notNull('index');
     }
 
     if (index < 0) {
-      throw RangeError.value(index, "index");
+      throw RangeError.value(index, 'index');
     }
 
     if (this is List<TSource>) {
@@ -282,7 +271,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
   TSource elementAtOrDefault(int index) {
     TSource result;
     if (index == null) {
-      throw ArgumentError.notNull("index");
+      throw ArgumentError.notNull('index');
     }
 
     if (index < 0) {
@@ -312,13 +301,10 @@ extension Enumerable<TSource> on Iterable<TSource> {
   Iterable<TSource> except(Iterable<TSource> other,
       [IEqualityComparer<TSource> comparer]) {
     if (other == null) {
-      throw ArgumentError.notNull("other");
+      throw ArgumentError.notNull('other');
     }
 
-    if (comparer == null) {
-      comparer = EqualityComparer<TSource>();
-    }
-
+    comparer ??= EqualityComparer<TSource>();
     Iterable<TSource> generator() sync* {
       final hashSet = other.toHashSet(comparer);
       final it = iterator;
@@ -374,7 +360,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
       TKey Function(TSource) keySelector,
       [IEqualityComparer<TKey> comparer]) {
     if (keySelector == null) {
-      throw ArgumentError.notNull("keySelector");
+      throw ArgumentError.notNull('keySelector');
     }
 
     IGrouping<TKey, TSource> resultSelector(
@@ -391,11 +377,11 @@ extension Enumerable<TSource> on Iterable<TSource> {
       TElement Function(TSource) elementSelector,
       [IEqualityComparer<TKey> comparer]) {
     if (keySelector == null) {
-      throw ArgumentError.notNull("keySelector");
+      throw ArgumentError.notNull('keySelector');
     }
 
     if (elementSelector == null) {
-      throw ArgumentError.notNull("elementSelector");
+      throw ArgumentError.notNull('elementSelector');
     }
 
     IGrouping<TKey, TElement> resultSelector(
@@ -411,7 +397,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
       TResult Function(TKey, Iterable<TSource>) resultSelector,
       [IEqualityComparer<TKey> comparer]) {
     if (resultSelector == null) {
-      throw ArgumentError.notNull("resultSelector");
+      throw ArgumentError.notNull('resultSelector');
     }
 
     return groupBy$3<TKey, TSource, TResult>(
@@ -424,21 +410,18 @@ extension Enumerable<TSource> on Iterable<TSource> {
       TResult Function(TKey, Iterable<TElement>) resultSelector,
       [IEqualityComparer<TKey> comparer]) {
     if (keySelector == null) {
-      throw ArgumentError.notNull("keySelector");
+      throw ArgumentError.notNull('keySelector');
     }
 
     if (elementSelector == null) {
-      throw ArgumentError.notNull("elementSelector");
+      throw ArgumentError.notNull('elementSelector');
     }
 
     if (resultSelector == null) {
-      throw ArgumentError.notNull("resultSelector");
+      throw ArgumentError.notNull('resultSelector');
     }
 
-    if (comparer == null) {
-      comparer = EqualityComparer<TKey>();
-    }
-
+    comparer ??= EqualityComparer<TKey>();
     Iterable<TResult> generator() sync* {
       final map = LinkedHashMap<TKey, List<TElement>>(
           equals: comparer.equals, hashCode: comparer.getHashCode);
@@ -471,25 +454,22 @@ extension Enumerable<TSource> on Iterable<TSource> {
       TResult Function(TSource, Iterable<TInner>) resultSelector,
       [IEqualityComparer<TKey> comparer]) {
     if (inner == null) {
-      throw ArgumentError.notNull("inner");
+      throw ArgumentError.notNull('inner');
     }
 
     if (innerKeySelector == null) {
-      throw ArgumentError.notNull("innerKeySelector");
+      throw ArgumentError.notNull('innerKeySelector');
     }
 
     if (outerKeySelector == null) {
-      throw ArgumentError.notNull("outerKeySelector");
+      throw ArgumentError.notNull('outerKeySelector');
     }
 
     if (resultSelector == null) {
-      throw ArgumentError.notNull("resultSelector");
+      throw ArgumentError.notNull('resultSelector');
     }
 
-    if (comparer == null) {
-      comparer = EqualityComparer<TKey>();
-    }
-
+    comparer ??= EqualityComparer<TKey>();
     Iterable<TResult> generator() sync* {
       final dict = LinkedHashMap<TKey, List<TInner>>(
           equals: comparer.equals, hashCode: comparer.getHashCode);
@@ -511,10 +491,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
         final current = it2.current;
         final key = outerKeySelector(current);
         var innerValues = dict[key];
-        if (innerValues == null) {
-          innerValues = <TInner>[];
-        }
-
+        innerValues ??= <TInner>[];
         yield resultSelector(current, innerValues);
       }
     }
@@ -525,13 +502,10 @@ extension Enumerable<TSource> on Iterable<TSource> {
   Iterable<TSource> intersect(Iterable<TSource> other,
       [IEqualityComparer<TSource> comparer]) {
     if (other == null) {
-      throw ArgumentError.notNull("other");
+      throw ArgumentError.notNull('other');
     }
 
-    if (comparer == null) {
-      comparer = EqualityComparer<TSource>();
-    }
-
+    comparer ??= EqualityComparer<TSource>();
     Iterable<TSource> generator() sync* {
       final second = other.toHashSet(comparer);
       final output = HashSet<TSource>(
@@ -562,25 +536,22 @@ extension Enumerable<TSource> on Iterable<TSource> {
       TResult Function(TSource, TInner) resultSelector,
       [IEqualityComparer<TKey> comparer]) {
     if (inner == null) {
-      throw ArgumentError.notNull("inner");
+      throw ArgumentError.notNull('inner');
     }
 
     if (innerKeySelector == null) {
-      throw ArgumentError.notNull("innerKeySelector");
+      throw ArgumentError.notNull('innerKeySelector');
     }
 
     if (outerKeySelector == null) {
-      throw ArgumentError.notNull("outerKeySelector");
+      throw ArgumentError.notNull('outerKeySelector');
     }
 
     if (resultSelector == null) {
-      throw ArgumentError.notNull("resultSelector");
+      throw ArgumentError.notNull('resultSelector');
     }
 
-    if (comparer == null) {
-      comparer = EqualityComparer<TKey>();
-    }
-
+    comparer ??= EqualityComparer<TKey>();
     Iterable<TResult> generator() sync* {
       final innerMap = LinkedHashMap<TKey, List<TInner>>(
           equals: comparer.equals, hashCode: comparer.getHashCode);
@@ -662,20 +633,20 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return (this as Iterable<num>).max$1<num>((e) => e) as TSource;
   }
 
-  TResult max$1<TResult extends num>(TResult selector(TSource element)) {
+  TResult max$1<TResult extends num>(TResult Function(TSource) selector) {
     if (selector == null) {
-      throw ArgumentError.notNull("selector");
+      throw ArgumentError.notNull('selector');
     }
 
-    return _computeNullable<TResult>("max", (r, v) => r < v ? v : r, selector);
+    return _computeNullable<TResult>('max', (r, v) => r < v ? v : r, selector);
   }
 
   TSource min() {
     return (this as Iterable<num>).min$1<num>((e) => e) as TSource;
   }
 
-  TResult min$1<TResult extends num>(TResult selector(TSource element)) {
-    return _computeNullable<TResult>("min", (r, v) => r > v ? v : r, selector);
+  TResult min$1<TResult extends num>(TResult Function(TSource) selector) {
+    return _computeNullable<TResult>('min', (r, v) => r > v ? v : r, selector);
   }
 
   Iterable<TResult> ofType<TResult>() {
@@ -737,7 +708,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
 
   Iterable<TResult> select<TResult>(TResult Function(TSource) selector) {
     if (selector == null) {
-      throw ArgumentError.notNull("selector");
+      throw ArgumentError.notNull('selector');
     }
 
     Iterable<TResult> generator() sync* {
@@ -752,7 +723,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
 
   Iterable<TResult> select$1<TResult>(TResult Function(TSource, int) selector) {
     if (selector == null) {
-      throw ArgumentError.notNull("selector");
+      throw ArgumentError.notNull('selector');
     }
 
     Iterable<TResult> generator() sync* {
@@ -769,7 +740,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
   Iterable<TResult> selectMany<TResult>(
       Iterable<TResult> Function(TSource) selector) {
     if (selector == null) {
-      throw ArgumentError.notNull("selector");
+      throw ArgumentError.notNull('selector');
     }
 
     Iterable<TResult> generator() sync* {
@@ -789,7 +760,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
   Iterable<TResult> selectMany$1<TResult>(
       Iterable<TResult> Function(TSource, int) selector) {
     if (selector == null) {
-      throw ArgumentError.notNull("selector");
+      throw ArgumentError.notNull('selector');
     }
 
     Iterable<TResult> generator() sync* {
@@ -811,11 +782,11 @@ extension Enumerable<TSource> on Iterable<TSource> {
       Iterable<TCollection> Function(TSource) collectionSelector,
       TResult Function(TSource, TCollection) resultSelector) {
     if (collectionSelector == null) {
-      throw ArgumentError.notNull("collectionSelector");
+      throw ArgumentError.notNull('collectionSelector');
     }
 
     if (resultSelector == null) {
-      throw ArgumentError.notNull("resultSelector");
+      throw ArgumentError.notNull('resultSelector');
     }
 
     Iterable<TResult> generator() sync* {
@@ -836,11 +807,11 @@ extension Enumerable<TSource> on Iterable<TSource> {
       Iterable<TCollection> Function(TSource, int) collectionSelector,
       TResult Function(TSource, TCollection) resultSelector) {
     if (collectionSelector == null) {
-      throw ArgumentError.notNull("collectionSelector");
+      throw ArgumentError.notNull('collectionSelector');
     }
 
     if (resultSelector == null) {
-      throw ArgumentError.notNull("resultSelector");
+      throw ArgumentError.notNull('resultSelector');
     }
 
     Iterable<TResult> generator() sync* {
@@ -861,13 +832,10 @@ extension Enumerable<TSource> on Iterable<TSource> {
   bool sequenceEqual(Iterable<TSource> other,
       [IEqualityComparer<TSource> comparer]) {
     if (other == null) {
-      throw ArgumentError.notNull("other");
+      throw ArgumentError.notNull('other');
     }
 
-    if (comparer == null) {
-      comparer = EqualityComparer<TSource>();
-    }
-
+    comparer ??= EqualityComparer<TSource>();
     if (this is List && other is List) {
       final list1 = this as List;
       final list2 = other as List;
@@ -967,7 +935,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
 
   Iterable<TSource> skip$1(int count) {
     if (count == null) {
-      throw ArgumentError.notNull("count");
+      throw ArgumentError.notNull('count');
     }
 
     Iterable<TSource> generator() sync* {
@@ -989,7 +957,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
 
   Iterable<TSource> skipWhile$1(bool Function(TSource) predicate) {
     if (predicate == null) {
-      throw ArgumentError.notNull("predicate");
+      throw ArgumentError.notNull('predicate');
     }
 
     Iterable<TSource> generator() sync* {
@@ -1012,7 +980,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
 
   Iterable<TSource> skipWhile$2(bool Function(TSource, int) predicate) {
     if (predicate == null) {
-      throw ArgumentError.notNull("predicate");
+      throw ArgumentError.notNull('predicate');
     }
 
     Iterable<TSource> generator() sync* {
@@ -1038,13 +1006,13 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return (this as Iterable<num>).sum$1<num>((e) => e) as TSource;
   }
 
-  TResult sum$1<TResult extends num>(TResult selector(TSource element)) {
-    return _computeNullable<TResult>("sum", (r, v) => r + v, selector);
+  TResult sum$1<TResult extends num>(TResult Function(TSource) selector) {
+    return _computeNullable<TResult>('sum', (r, v) => r + v, selector);
   }
 
   Iterable<TSource> take$1(int count) {
     if (count == null) {
-      throw ArgumentError.notNull("count");
+      throw ArgumentError.notNull('count');
     }
 
     Iterable<TSource> generator() sync* {
@@ -1063,7 +1031,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
 
   Iterable<TSource> takeWhile$1(bool Function(TSource) predicate) {
     if (predicate == null) {
-      throw ArgumentError.notNull("predicate");
+      throw ArgumentError.notNull('predicate');
     }
 
     Iterable<TSource> generator() sync* {
@@ -1082,7 +1050,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
 
   Iterable<TSource> takeWhile$2(bool Function(TSource, int) predicate) {
     if (predicate == null) {
-      throw ArgumentError.notNull("predicate");
+      throw ArgumentError.notNull('predicate');
     }
 
     Iterable<TSource> generator() sync* {
@@ -1103,13 +1071,10 @@ extension Enumerable<TSource> on Iterable<TSource> {
   Map<TKey, TSource> toMap<TKey>(TKey Function(TSource) keySelector,
       [IEqualityComparer<TKey> comparer]) {
     if (keySelector == null) {
-      throw ArgumentError.notNull("keySelector");
+      throw ArgumentError.notNull('keySelector');
     }
 
-    if (comparer == null) {
-      comparer = EqualityComparer<TKey>();
-    }
-
+    comparer ??= EqualityComparer<TKey>();
     final result = LinkedHashMap<TKey, TSource>(
         equals: comparer.equals, hashCode: comparer.getHashCode);
     final it = iterator;
@@ -1127,17 +1092,14 @@ extension Enumerable<TSource> on Iterable<TSource> {
       TElement Function(TSource) elementSelector,
       [IEqualityComparer<TKey> comparer]) {
     if (keySelector == null) {
-      throw ArgumentError.notNull("keySelector");
+      throw ArgumentError.notNull('keySelector');
     }
 
     if (elementSelector == null) {
-      throw ArgumentError.notNull("elementSelector");
+      throw ArgumentError.notNull('elementSelector');
     }
 
-    if (comparer == null) {
-      comparer = EqualityComparer<TKey>();
-    }
-
+    comparer ??= EqualityComparer<TKey>();
     final result = LinkedHashMap<TKey, TElement>(
         equals: comparer.equals, hashCode: comparer.getHashCode);
     final it = iterator;
@@ -1151,10 +1113,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
   }
 
   HashSet<TSource> toHashSet([IEqualityComparer<TSource> comparer]) {
-    if (comparer == null) {
-      comparer = EqualityComparer<TSource>();
-    }
-
+    comparer ??= EqualityComparer<TSource>();
     final result = HashSet<TSource>(
         equals: comparer.equals, hashCode: comparer.getHashCode);
     result.addAll(this);
@@ -1164,13 +1123,10 @@ extension Enumerable<TSource> on Iterable<TSource> {
   Lookup<TKey, TSource> toLookup<TKey>(TKey Function(TSource) keySelector,
       [IEqualityComparer<TKey> comparer]) {
     if (keySelector == null) {
-      throw ArgumentError.notNull("keySelector");
+      throw ArgumentError.notNull('keySelector');
     }
 
-    if (comparer == null) {
-      comparer = EqualityComparer<TKey>();
-    }
-
+    comparer ??= EqualityComparer<TKey>();
     final dict = LinkedHashMap<TKey, IGrouping<TKey, TSource>>(
         equals: comparer.equals, hashCode: comparer.getHashCode);
     final it = groupBy<TKey>(keySelector, comparer).iterator;
@@ -1187,17 +1143,14 @@ extension Enumerable<TSource> on Iterable<TSource> {
       TElement Function(TSource) elementSelector,
       [IEqualityComparer<TKey> comparer]) {
     if (keySelector == null) {
-      throw ArgumentError.notNull("keySelector");
+      throw ArgumentError.notNull('keySelector');
     }
 
     if (elementSelector == null) {
-      throw ArgumentError.notNull("elementSelector");
+      throw ArgumentError.notNull('elementSelector');
     }
 
-    if (comparer == null) {
-      comparer = EqualityComparer<TKey>();
-    }
-
+    comparer ??= EqualityComparer<TKey>();
     final dict = LinkedHashMap<TKey, IGrouping<TKey, TElement>>(
         equals: comparer.equals, hashCode: comparer.getHashCode);
     final it = groupBy$1<TKey, TElement>(keySelector, elementSelector, comparer)
@@ -1213,13 +1166,10 @@ extension Enumerable<TSource> on Iterable<TSource> {
   Iterable<TSource> union(Iterable<TSource> other,
       [IEqualityComparer<TSource> comparer]) {
     if (other == null) {
-      throw ArgumentError.notNull("other");
+      throw ArgumentError.notNull('other');
     }
 
-    if (comparer == null) {
-      comparer = EqualityComparer<TSource>();
-    }
-
+    comparer ??= EqualityComparer<TSource>();
     Iterable<TSource> generator() sync* {
       var it = iterator;
       final hashSet =
@@ -1245,7 +1195,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
 
   Iterable<TSource> where$1(bool Function(TSource) predicate) {
     if (predicate == null) {
-      throw ArgumentError.notNull("predicate");
+      throw ArgumentError.notNull('predicate');
     }
 
     Iterable<TSource> generator() sync* {
@@ -1263,7 +1213,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
 
   Iterable<TSource> where$2(bool Function(TSource, int) predicate) {
     if (predicate == null) {
-      throw ArgumentError.notNull("predicate");
+      throw ArgumentError.notNull('predicate');
     }
 
     Iterable<TSource> generator() sync* {
@@ -1283,11 +1233,11 @@ extension Enumerable<TSource> on Iterable<TSource> {
   Iterable zip<TSecond, TResult>(Iterable<TSecond> second,
       TResult Function(TSource, TSecond) resultSelector) {
     if (second == null) {
-      throw ArgumentError.notNull("second");
+      throw ArgumentError.notNull('second');
     }
 
     if (resultSelector == null) {
-      throw ArgumentError.notNull("resultSelector");
+      throw ArgumentError.notNull('resultSelector');
     }
 
     Iterable<TResult> generator() sync* {
@@ -1304,7 +1254,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
   TResult _computeNullable<TResult extends num>(
       String name,
       TResult Function(TResult, TResult) func,
-      TResult selector(TSource element)) {
+      TResult Function(TSource) selector) {
     TResult result;
     var first = true;
     final it = iterator;
@@ -1315,10 +1265,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
       }
 
       final value = selector(current);
-      if (result == null) {
-        result = value;
-      }
-
+      result ??= value;
       if (value != null) {
         if (!first) {
           result = func(result, value);
@@ -1332,11 +1279,11 @@ extension Enumerable<TSource> on Iterable<TSource> {
   }
 
   StateError _errorEmptySequence() {
-    return StateError("Sequence contains no elements");
+    return StateError('Sequence contains no elements');
   }
 
   StateError _errorMoreThanOneElement() {
-    return StateError("Sequence contains more than one element");
+    return StateError('Sequence contains more than one element');
   }
 
   StateError _errorUnableToCompute<TResult>(String operation) {

@@ -9,7 +9,7 @@ void main(List<String> args) {
   print(numbers1.append(3));
   print(pets.any((p) => p.age > 2));
   print(pets.average((p) => p.age));
-  print(pets.concat([Pet("xyz", 99)]));
+  print(pets.concat([Pet('xyz', 99)]));
   print(pets.contains(pets.elementAtOrDefault(2)));
   print(pets.count((p) => p.age < 2));
   print(pets.defaultIfEmpty());
@@ -49,9 +49,9 @@ void main(List<String> args) {
 }
 
 final petOwners = [
-  PetOwner("a")..pets = [Pet("a1", 1)],
-  PetOwner("b")..pets = [Pet("b1", 1), Pet("b2", 2)],
-  PetOwner("c")..pets = [Pet("c1", 1), Pet("c2", 2), Pet("c3", 3)],
+  PetOwner('a')..pets = [Pet('a1', 1)],
+  PetOwner('b')..pets = [Pet('b1', 1), Pet('b2', 2)],
+  PetOwner('c')..pets = [Pet('c1', 1), Pet('c2', 2), Pet('c3', 3)],
 ]..toList().forEach((petOwner) {
     for (final pet in petOwner.pets) {
       pet.owner = petOwner;
@@ -77,9 +77,11 @@ class Pet {
 
   Pet(this.name, this.age);
 
+  @override
   String toString() => name;
 
-  operator ==(other) {
+  @override
+  bool operator ==(other) {
     if (identical(this, other)) {
       return true;
     }
@@ -99,9 +101,11 @@ class PetOwner {
 
   PetOwner(this.name);
 
+  @override
   String toString() => name;
 
-  operator ==(other) {
+  @override
+  bool operator ==(other) {
     if (identical(this, other)) {
       return true;
     }

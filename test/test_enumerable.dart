@@ -53,9 +53,9 @@ final pets = _generatePets();
 
 Iterable<PetOwner> _generatePetOwners() {
   return [
-    PetOwner("a")..pets = [Pet("a1", 1)],
-    PetOwner("b")..pets = [Pet("b1", 1), Pet("b2", 2)],
-    PetOwner("c")..pets = [Pet("c1", 1), Pet("c2", 2), Pet("c3", 3)],
+    PetOwner('a')..pets = [Pet('a1', 1)],
+    PetOwner('b')..pets = [Pet('b1', 1), Pet('b2', 2)],
+    PetOwner('c')..pets = [Pet('c1', 1), Pet('c2', 2), Pet('c3', 3)],
   ]..toList().forEach((petOwner) {
       for (final pet in petOwner.pets) {
         pet.owner = petOwner;
@@ -68,7 +68,7 @@ Iterable<Pet> _generatePets() {
 }
 
 void _testAggregate() {
-  test("Aggregate", () {
+  test('Aggregate', () {
     {
       var data = [1, 0, 0, 0, 0];
       var expected = 16;
@@ -84,9 +84,9 @@ void _testAggregate() {
     }
     //
     {
-      var data = ["a", "b", "c", "d"];
-      var expected = "a, b, c, d";
-      var result = data.aggregate((r, e) => "$r, $e");
+      var data = ['a', 'b', 'c', 'd'];
+      var expected = 'a, b, c, d';
+      var result = data.aggregate((r, e) => '$r, $e');
       expect(result, expected);
     }
     //
@@ -115,7 +115,7 @@ void _testAggregate() {
 }
 
 void _testAll() {
-  test("All", () {
+  test('All', () {
     {
       var data = <int>[];
       var expected = true;
@@ -140,7 +140,7 @@ void _testAll() {
 }
 
 void _testAny() {
-  test("Any", () {
+  test('Any', () {
     {
       var data = <int>[];
       var expected = false;
@@ -186,7 +186,7 @@ void _testAny() {
 }
 
 void _testAppend() {
-  test("Append", () {
+  test('Append', () {
     {
       var data = [1, 2];
       var expected = [1, 2, 3];
@@ -198,7 +198,7 @@ void _testAppend() {
 }
 
 void _testAverage() {
-  test("Average", () {
+  test('Average', () {
     {
       var data = [0, 1, 2, 3, 4];
       var expected = 2.0;
@@ -216,10 +216,10 @@ void _testAverage() {
 }
 
 void _testCast() {
-  test("Cast", () {
+  test('Cast', () {
     {
-      var data = <Object>["mango", "apple", "lemon"];
-      var expected = ["mango", "apple", "lemon"];
+      var data = <Object>['mango', 'apple', 'lemon'];
+      var expected = ['mango', 'apple', 'lemon'];
       var query = data.cast$1<String>();
       var result = query;
       expect(result, expected);
@@ -228,7 +228,7 @@ void _testCast() {
 }
 
 void _testConcat() {
-  test("Concat", () {
+  test('Concat', () {
     {
       var data1 = [0, 1, 2, 3, 4];
       var data2 = [5, 6, 7, 8, 9];
@@ -250,7 +250,7 @@ void _testConcat() {
 }
 
 void _testContains() {
-  test("Contains", () {
+  test('Contains', () {
     {
       var data = [0, 1, 2, 3, 4];
       var expected = true;
@@ -275,7 +275,7 @@ void _testContains() {
 }
 
 void _testCount() {
-  test("Count", () {
+  test('Count', () {
     {
       var data = [0, 1, 2, 3, 4];
       var expected = 5;
@@ -293,7 +293,7 @@ void _testCount() {
 }
 
 void _testDefaultIfEmpty() {
-  test("DefaultIfEmpty", () {
+  test('DefaultIfEmpty', () {
     {
       var data = <int>[];
       var expected = [41];
@@ -313,7 +313,7 @@ void _testDefaultIfEmpty() {
 }
 
 void _testDistinct() {
-  test("Distinct", () {
+  test('Distinct', () {
     {
       var data = [0, 1, 2, 3, 4, 3, 2, 1, 0];
       var expected = [0, 1, 2, 3, 4];
@@ -349,7 +349,7 @@ void _testDistinct() {
 }
 
 void _testElementAt() {
-  test("ElementAt", () {
+  test('ElementAt', () {
     {
       var data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
       var expected = 5;
@@ -360,7 +360,7 @@ void _testElementAt() {
 }
 
 void _testElementAtOrDefault() {
-  test("ElementAtOrDefault", () {
+  test('ElementAtOrDefault', () {
     {
       var data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
       var expected = 5;
@@ -378,7 +378,7 @@ void _testElementAtOrDefault() {
 }
 
 void _testExcept() {
-  test("Except", () {
+  test('Except', () {
     {
       var data1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
       var data2 = [3, 4, 5, 6];
@@ -400,7 +400,7 @@ void _testExcept() {
 }
 
 void _testFirst() {
-  test("First", () {
+  test('First', () {
     {
       var data = [0, 1];
       var expected = 0;
@@ -418,7 +418,7 @@ void _testFirst() {
 }
 
 void _testFirstOrDefault() {
-  test("FirstOrDefault", () {
+  test('FirstOrDefault', () {
     {
       var data = [0, 1];
       var expected = 0;
@@ -457,7 +457,7 @@ void _testFirstOrDefault() {
 }
 
 void _testGroupBy() {
-  test("GroupBy", () {
+  test('GroupBy', () {
     {
       var query = pets.groupBy((pet) => pet.age);
       var expected = {
@@ -507,11 +507,11 @@ void _testGroupBy() {
     //
     {
       var query = pets.groupBy$2(
-          (pet) => pet.age, (age, pet) => pet.toList().join(", "));
+          (pet) => pet.age, (age, pet) => pet.toList().join(', '));
       var expected = [
-        "a1, b1, c1",
-        "b2, c2",
-        "c3",
+        'a1, b1, c1',
+        'b2, c2',
+        'c3',
       ];
 
       var result = query.toList();
@@ -519,12 +519,12 @@ void _testGroupBy() {
     }
     //
     {
-      var query = pets.groupBy$3((pet) => pet.age, (pet) => "@" + pet.name,
-          (age, pet) => pet.toList().join(", "));
+      var query = pets.groupBy$3((pet) => pet.age, (pet) => '@' + pet.name,
+          (age, pet) => pet.toList().join(', '));
       var expected = [
-        "@a1, @b1, @c1",
-        "@b2, @c2",
-        "@c3",
+        '@a1, @b1, @c1',
+        '@b2, @c2',
+        '@c3',
       ];
 
       var result = query.toList();
@@ -534,7 +534,7 @@ void _testGroupBy() {
 }
 
 void _testGroupJoin() {
-  test("GroupJoin", () {
+  test('GroupJoin', () {
     {
       var query = petOwners.groupJoin(
           pets,
@@ -544,23 +544,23 @@ void _testGroupJoin() {
               [petOwner, pets.select((pet) => pet.name).toList()]);
       var expected = [
         [
-          petOwners.where$1((petOwner) => petOwner.name == "a").single$1(),
+          petOwners.where$1((petOwner) => petOwner.name == 'a').single$1(),
           pets
-              .where$1((pet) => pet.owner.name == "a")
+              .where$1((pet) => pet.owner.name == 'a')
               .select((pet) => pet.name)
               .toList()
         ],
         [
-          petOwners.where$1((petOwner) => petOwner.name == "b").single$1(),
+          petOwners.where$1((petOwner) => petOwner.name == 'b').single$1(),
           pets
-              .where$1((pet) => pet.owner.name == "b")
+              .where$1((pet) => pet.owner.name == 'b')
               .select((pet) => pet.name)
               .toList()
         ],
         [
-          petOwners.where$1((petOwner) => petOwner.name == "c").single$1(),
+          petOwners.where$1((petOwner) => petOwner.name == 'c').single$1(),
           pets
-              .where$1((pet) => pet.owner.name == "c")
+              .where$1((pet) => pet.owner.name == 'c')
               .select((pet) => pet.name)
               .toList()
         ],
@@ -573,7 +573,7 @@ void _testGroupJoin() {
 }
 
 void _testIntersect() {
-  test("Intersect", () {
+  test('Intersect', () {
     {
       var data1 = [0, 1, 2, 3, 4, 3, 2, 1, 0];
       var data2 = [5, 4, 2];
@@ -595,20 +595,20 @@ void _testIntersect() {
 }
 
 void _testJoin() {
-  test("Join", () {
+  test('Join', () {
     {
       var query = petOwners.join$1(
           pets,
           (petOwner) => petOwner,
           (pet) => pet.owner,
-          (petOwner, pet) => "${petOwner.name} - ${pet.name}");
+          (petOwner, pet) => '${petOwner.name} - ${pet.name}');
       var expected = [
-        "a - a1",
-        "b - b1",
-        "b - b2",
-        "c - c1",
-        "c - c2",
-        "c - c3",
+        'a - a1',
+        'b - b1',
+        'b - b2',
+        'c - c1',
+        'c - c2',
+        'c - c3',
       ];
       var result = query;
       expect(result, expected);
@@ -617,7 +617,7 @@ void _testJoin() {
 }
 
 void _testLast() {
-  test("Last", () {
+  test('Last', () {
     {
       var data = [0, 1];
       var expected = 1;
@@ -635,7 +635,7 @@ void _testLast() {
 }
 
 void _testLastOrDefault() {
-  test("LastOrDefault", () {
+  test('LastOrDefault', () {
     {
       var data = [0, 1];
       var expected = 1;
@@ -674,7 +674,7 @@ void _testLastOrDefault() {
 }
 
 void _testMax() {
-  test("Max", () {
+  test('Max', () {
     {
       var data = [4, 3, 2, 1, 0];
       var expected = 4;
@@ -734,7 +734,7 @@ void _testMax() {
 }
 
 void _testMin() {
-  test("Min", () {
+  test('Min', () {
     {
       var data = [4, 3, 2, 1, 0];
       var expected = 0;
@@ -794,9 +794,9 @@ void _testMin() {
 }
 
 void _testOfType() {
-  test("OfType", () {
+  test('OfType', () {
     {
-      var data = [0, "0", 1, "1", 2, "3"];
+      var data = [0, '0', 1, '1', 2, '3'];
       var expected = [0, 1, 2];
       var query = data.ofType<int>();
       var result = query;
@@ -806,7 +806,7 @@ void _testOfType() {
 }
 
 void _testOrderBy() {
-  test("OrderBy", () {
+  test('OrderBy', () {
     {
       var data = [4, 3, 2, 1, 0];
       var expected = [0, 1, 2, 3, 4];
@@ -834,7 +834,7 @@ void _testOrderBy() {
 }
 
 void _testPrepend() {
-  test("Prepend", () {
+  test('Prepend', () {
     {
       var data = [1, 2];
       var expected = [0, 1, 2];
@@ -846,7 +846,7 @@ void _testPrepend() {
 }
 
 void _testSelect() {
-  test("Select", () {
+  test('Select', () {
     {
       var data = [0, 1, 2, 3, 4, 3, 2, 1, 0];
       var expected = [0, 10, 20, 30, 40, 30, 20, 10, 0];
@@ -865,8 +865,8 @@ void _testSelect() {
     //
     {
       var data = [0, 1, 2];
-      var expected = ["00", "11", "22"];
-      var query = data.select$1((e, i) => "$e$i");
+      var expected = ['00', '11', '22'];
+      var query = data.select$1((e, i) => '$e$i');
       var result = query;
       expect(result, expected);
     }
@@ -874,7 +874,7 @@ void _testSelect() {
 }
 
 void _testSelectMany() {
-  test("SelectMany", () {
+  test('SelectMany', () {
     {
       var data = [
         [0],
@@ -895,17 +895,17 @@ void _testSelectMany() {
     }
     //
     {
-      var expected = ["0a1", "1b1", "1b2", "2c1", "2c2", "2c3"];
+      var expected = ['0a1', '1b1', '1b2', '2c1', '2c2', '2c3'];
       var query = petOwners.selectMany$1(
-          (petOwner, index) => petOwner.pets.select((pet) => "${index}${pet}"));
+          (petOwner, index) => petOwner.pets.select((pet) => '${index}${pet}'));
       var result = query;
       expect(result, expected);
     }
     //
     {
-      var expected = ["a a1", "b b1", "b b2", "c c1", "c c2", "c c3"];
+      var expected = ['a a1', 'b b1', 'b b2', 'c c1', 'c c2', 'c c3'];
       var query = petOwners.selectMany$2((petOwner) => petOwner.pets,
-          (petOwner, pet) => "${petOwner.name} ${pet.name}");
+          (petOwner, pet) => '${petOwner.name} ${pet.name}');
       var result = query;
       expect(result, expected);
     }
@@ -913,7 +913,7 @@ void _testSelectMany() {
 }
 
 void _testSequenceEqual() {
-  test("SequenceEqual", () {
+  test('SequenceEqual', () {
     {
       var data1 = [0, 1, 2];
       var data2 = [0, 1, 2];
@@ -941,7 +941,7 @@ void _testSequenceEqual() {
 }
 
 void _testSingle() {
-  test("Single", () {
+  test('Single', () {
     {
       var data = [0];
       var expected = 0;
@@ -983,7 +983,7 @@ void _testSingle() {
 }
 
 void _testSingleOrDefault() {
-  test("SingleOrDefault", () {
+  test('SingleOrDefault', () {
     {
       var data = [0];
       var expected = 0;
@@ -1015,7 +1015,7 @@ void _testSingleOrDefault() {
 }
 
 void _testSkip() {
-  test("Skip", () {
+  test('Skip', () {
     {
       var data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
       var expected = [5, 6, 7, 8, 9];
@@ -1035,7 +1035,7 @@ void _testSkip() {
 }
 
 void _testSkipWhile() {
-  test("SkipWhile", () {
+  test('SkipWhile', () {
     {
       var data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
       var expected = [5, 6, 7, 8, 9];
@@ -1053,8 +1053,8 @@ void _testSkipWhile() {
     }
     //
     {
-      var data = ["a", "b", "c"];
-      var expected = ["b", "c"];
+      var data = ['a', 'b', 'c'];
+      var expected = ['b', 'c'];
       var query = data.skipWhile$2((str, i) => str.length > i);
       var result = query;
       expect(result, expected);
@@ -1063,7 +1063,7 @@ void _testSkipWhile() {
 }
 
 void _testSum() {
-  test("Sum", () {
+  test('Sum', () {
     {
       var data = [4, 3, 2, 1, 0];
       var expected = 10;
@@ -1123,7 +1123,7 @@ void _testSum() {
 }
 
 void _testTake() {
-  test("Take", () {
+  test('Take', () {
     {
       var data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
       var expected = [0, 1, 2, 3, 4];
@@ -1143,7 +1143,7 @@ void _testTake() {
 }
 
 void _testTakeWhile() {
-  test("TakeWhile", () {
+  test('TakeWhile', () {
     {
       var data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
       var expected = [0, 1, 2, 3, 4];
@@ -1171,27 +1171,27 @@ void _testTakeWhile() {
 }
 
 void _testThenBy() {
-  test("ThenBy", () {
+  test('ThenBy', () {
     {
       var data = [
-        "grape",
-        "passionfruit",
-        "banana",
-        "mango",
-        "orange",
-        "raspberry",
-        "apple",
-        "blueberry"
+        'grape',
+        'passionfruit',
+        'banana',
+        'mango',
+        'orange',
+        'raspberry',
+        'apple',
+        'blueberry'
       ];
       var expected = [
-        "apple",
-        "grape",
-        "mango",
-        "banana",
-        "orange",
-        "blueberry",
-        "raspberry",
-        "passionfruit"
+        'apple',
+        'grape',
+        'mango',
+        'banana',
+        'orange',
+        'blueberry',
+        'raspberry',
+        'passionfruit'
       ];
 
       var query = data.orderBy((str) => str.length).thenBy((str) => str);
@@ -1201,24 +1201,24 @@ void _testThenBy() {
     //
     {
       var data = [
-        "grape",
-        "passionfruit",
-        "banana",
-        "mango",
-        "orange",
-        "raspberry",
-        "apple",
-        "blueberry"
+        'grape',
+        'passionfruit',
+        'banana',
+        'mango',
+        'orange',
+        'raspberry',
+        'apple',
+        'blueberry'
       ];
       var expected = [
-        "passionfruit",
-        "raspberry",
-        "blueberry",
-        "orange",
-        "banana",
-        "mango",
-        "grape",
-        "apple"
+        'passionfruit',
+        'raspberry',
+        'blueberry',
+        'orange',
+        'banana',
+        'mango',
+        'grape',
+        'apple'
       ];
       var query = data
           .orderByDescending((str) => str.length)
@@ -1230,24 +1230,24 @@ void _testThenBy() {
     {
       var johnSmith10 = Person()
         ..age = 10
-        ..firstName = "John"
-        ..lastName = "Smith";
+        ..firstName = 'John'
+        ..lastName = 'Smith';
       var tomSawyer = Person()
         ..age = 12
-        ..firstName = "Tom"
-        ..lastName = "Sawyer";
+        ..firstName = 'Tom'
+        ..lastName = 'Sawyer';
       var johnSmith60 = Person()
         ..age = 60
-        ..firstName = "John"
-        ..lastName = "Smith";
+        ..firstName = 'John'
+        ..lastName = 'Smith';
       var jackSparrow = Person()
         ..age = 40
-        ..firstName = "Jack"
-        ..lastName = "Sparrow";
+        ..firstName = 'Jack'
+        ..lastName = 'Sparrow';
       var johnWick = Person()
         ..age = 50
-        ..firstName = "John"
-        ..lastName = "Wick";
+        ..firstName = 'John'
+        ..lastName = 'Wick';
       var data = [
         johnSmith60,
         tomSawyer,
@@ -1288,27 +1288,27 @@ void _testThenBy() {
 }
 
 void _testToDictionary() {
-  test("ToDictionary", () {
+  test('ToDictionary', () {
     {
       var data = [0, 1];
-      var result = data.toMap((kv) => "$kv");
-      var expected = {"0": 0, "1": 1};
+      var result = data.toMap((kv) => '$kv');
+      var expected = {'0': 0, '1': 1};
       expect(result, expected);
     }
   });
 }
 
 void _testToLookup() {
-  test("ToLookup", () {
+  test('ToLookup', () {
     {
       var query = pets.toLookup((pet) => pet.owner);
       var expected = {
-        petOwners.where$1((petOwner) => petOwner.name == "a").single$1():
-            pets.where$1((pet) => pet.owner.name == "a").toList(),
-        petOwners.where$1((petOwner) => petOwner.name == "b").single$1():
-            pets.where$1((pet) => pet.owner.name == "b").toList(),
-        petOwners.where$1((petOwner) => petOwner.name == "c").single$1():
-            pets.where$1((pet) => pet.owner.name == "c").toList()
+        petOwners.where$1((petOwner) => petOwner.name == 'a').single$1():
+            pets.where$1((pet) => pet.owner.name == 'a').toList(),
+        petOwners.where$1((petOwner) => petOwner.name == 'b').single$1():
+            pets.where$1((pet) => pet.owner.name == 'b').toList(),
+        petOwners.where$1((petOwner) => petOwner.name == 'c').single$1():
+            pets.where$1((pet) => pet.owner.name == 'c').toList()
       };
       var result = <PetOwner, List<Pet>>{};
       for (var group in query) {
@@ -1324,16 +1324,16 @@ void _testToLookup() {
     {
       var query = pets.toLookup$1((pet) => pet.owner, (pet) => pet.name);
       var expected = {
-        petOwners.where$1((petOwner) => petOwner.name == "a").single$1(): pets
-            .where$1((pet) => pet.owner.name == "a")
+        petOwners.where$1((petOwner) => petOwner.name == 'a').single$1(): pets
+            .where$1((pet) => pet.owner.name == 'a')
             .select((pet) => pet.name)
             .toList(),
-        petOwners.where$1((petOwner) => petOwner.name == "b").single$1(): pets
-            .where$1((pet) => pet.owner.name == "b")
+        petOwners.where$1((petOwner) => petOwner.name == 'b').single$1(): pets
+            .where$1((pet) => pet.owner.name == 'b')
             .select((pet) => pet.name)
             .toList(),
-        petOwners.where$1((petOwner) => petOwner.name == "c").single$1(): pets
-            .where$1((pet) => pet.owner.name == "c")
+        petOwners.where$1((petOwner) => petOwner.name == 'c').single$1(): pets
+            .where$1((pet) => pet.owner.name == 'c')
             .select((pet) => pet.name)
             .toList()
       };
@@ -1351,7 +1351,7 @@ void _testToLookup() {
 }
 
 void _testUnion() {
-  test("Union", () {
+  test('Union', () {
     {
       var data1 = [0, 1, 2, 3, 4, 0, 1, 2, 3, 4];
       var data2 = [5, 6, 7, 8, 9, 5, 6, 7, 8, 9];
@@ -1373,7 +1373,7 @@ void _testUnion() {
 }
 
 void _testWhere() {
-  test("Where", () {
+  test('Where', () {
     {
       var data = [0, 1, 2, 3, 4, 3, 2, 1, 0];
       var expected = [0, 1, 2, 2, 1, 0];
@@ -1393,14 +1393,14 @@ void _testWhere() {
 }
 
 void _testZip() {
-  test("Zip", () {
+  test('Zip', () {
     {
       var data1 = [0, 1, 2, 3];
-      var data2 = ["0", "1", "2"];
+      var data2 = ['0', '1', '2'];
       var expected = [
-        [0, "0"],
-        [1, "1"],
-        [2, "2"]
+        [0, '0'],
+        [1, '1'],
+        [2, '2']
       ];
       var query = data1.zip(data2, (e1, e2) => [e1, e2]);
       var result = query;
@@ -1420,6 +1420,7 @@ class Pet {
   String name;
   PetOwner owner;
   Pet(this.name, this.age);
+  @override
   String toString() => name;
 }
 
@@ -1427,5 +1428,6 @@ class PetOwner {
   String name;
   Iterable<Pet> pets;
   PetOwner(this.name);
+  @override
   String toString() => name;
 }

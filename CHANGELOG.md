@@ -1,3 +1,7 @@
+## 0.1.1
+
+- The source code modified according to Google Dart Pedantic requirements
+
 ## 0.1.0
 
 - Renamed some overloaded methods

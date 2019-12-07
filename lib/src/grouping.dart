@@ -14,9 +14,11 @@ class _Grouping<TKey, TElement> extends Iterable<TElement>
     _key = key;
   }
 
+  @override
   Iterator<TElement> get iterator {
     return _elements.iterator;
   }
 
+  @override
   TKey get key => _key;
 }
