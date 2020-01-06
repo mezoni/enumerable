@@ -1,3 +1,8 @@
+## 0.1.3
+
+- Performed minor code modifications
+- Documented some API methods
+
 ## 0.1.2
 
 - Added method `skipLast` to extension `Enumerable`

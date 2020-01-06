@@ -3,7 +3,7 @@ enumerable
 
 The `Enumerable` static methods extension on `Iterable` (inspired by Microsoft Enumerable).
 
-Version 0.1.2
+Version 0.1.3
 
 Classes  
 

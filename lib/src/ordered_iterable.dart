@@ -6,6 +6,8 @@ abstract class IOrderedIterable<TElement> implements Iterable<TElement> {
       IComparer<TKey> comparer,
       bool descending);
 
+  /// Performs a subsequent ordering of the elements in a sequence in ascending
+  /// order.
   IOrderedIterable<TElement> thenBy<TKey>(TKey Function(TElement) keySelector,
       [IComparer<TKey> comparer]);
 
@@ -14,6 +16,8 @@ abstract class IOrderedIterable<TElement> implements Iterable<TElement> {
       [IComparer<TKey> comparer]);
 }
 
+/// Performs a subsequent ordering of the elements in a sequence in descending
+/// order.
 class _OrderedIterable<TElement, TSortKey> extends Iterable<TElement>
     implements IOrderedIterable<TElement> {
   IComparer<TSortKey> _comparer;

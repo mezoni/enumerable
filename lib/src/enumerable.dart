@@ -1011,7 +1011,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     }
 
     count = _math.max(0, count);
-    return take(_math.max(0, length - count));
+    return take$1(_math.max(0, length - count));
   }
 
   /// Bypasses a specified number of elements in a sequence and then returns
@@ -1129,7 +1129,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
       throw ArgumentError.notNull('count');
     }
 
-    return skip(_math.max(0, length - count));
+    return skip$1(_math.max(0, length - count));
   }
 
   /// Returns elements from a sequence as long as a specified condition is
@@ -1175,6 +1175,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Creates a Map<T> from an Iterable<T>.
   Map<TKey, TSource> toMap<TKey>(TKey Function(TSource) keySelector,
       [IEqualityComparer<TKey> comparer]) {
     if (keySelector == null) {
@@ -1194,31 +1195,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return result;
   }
 
-  Map<TKey, TElement> toMap$1<TKey, TElement>(
-      TKey Function(TSource) keySelector,
-      TElement Function(TSource) elementSelector,
-      [IEqualityComparer<TKey> comparer]) {
-    if (keySelector == null) {
-      throw ArgumentError.notNull('keySelector');
-    }
-
-    if (elementSelector == null) {
-      throw ArgumentError.notNull('elementSelector');
-    }
-
-    comparer ??= EqualityComparer<TKey>();
-    final result = LinkedHashMap<TKey, TElement>(
-        equals: comparer.equals, hashCode: comparer.getHashCode);
-    final it = iterator;
-    while (it.moveNext()) {
-      final current = it.current;
-      final key = keySelector(current);
-      result[key] = elementSelector(current);
-    }
-
-    return result;
-  }
-
+  /// Creates a Set<T> from an Iterable<T>.
   HashSet<TSource> toHashSet([IEqualityComparer<TSource> comparer]) {
     comparer ??= EqualityComparer<TSource>();
     final result = HashSet<TSource>(
@@ -1227,6 +1204,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return result;
   }
 
+  /// Creates a Lookup<T> from an Iterable<T>.
   Lookup<TKey, TSource> toLookup<TKey>(TKey Function(TSource) keySelector,
       [IEqualityComparer<TKey> comparer]) {
     if (keySelector == null) {
@@ -1245,6 +1223,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return Lookup<TKey, TSource>._internal(dict);
   }
 
+  /// Creates a Lookup<T> from an Iterable<T>.
   Lookup<TKey, TElement> toLookup$1<TKey, TElement>(
       TKey Function(TSource) keySelector,
       TElement Function(TSource) elementSelector,
@@ -1268,6 +1247,32 @@ extension Enumerable<TSource> on Iterable<TSource> {
     }
 
     return Lookup<TKey, TElement>._internal(dict);
+  }
+
+  /// Creates a Map<T> from an Iterable<T>.
+  Map<TKey, TElement> toMap$1<TKey, TElement>(
+      TKey Function(TSource) keySelector,
+      TElement Function(TSource) elementSelector,
+      [IEqualityComparer<TKey> comparer]) {
+    if (keySelector == null) {
+      throw ArgumentError.notNull('keySelector');
+    }
+
+    if (elementSelector == null) {
+      throw ArgumentError.notNull('elementSelector');
+    }
+
+    comparer ??= EqualityComparer<TKey>();
+    final result = LinkedHashMap<TKey, TElement>(
+        equals: comparer.equals, hashCode: comparer.getHashCode);
+    final it = iterator;
+    while (it.moveNext()) {
+      final current = it.current;
+      final key = keySelector(current);
+      result[key] = elementSelector(current);
+    }
+
+    return result;
   }
 
   /// Produces the set union of two sequences.
