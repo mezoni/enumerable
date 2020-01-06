@@ -1,3 +1,9 @@
+## 0.1.2
+
+- Added method `skipLast` to extension `Enumerable`
+- Added method `takeLast` to extension `Enumerable`
+- Documented some API methods
+
 ## 0.1.1
 
 - The source code modified according to Google Dart Pedantic requirements

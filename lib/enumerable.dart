@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'dart:math' as _math;
 
 part 'src/comparer.dart';
 part 'src/enumerable.dart';

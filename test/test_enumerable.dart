@@ -35,9 +35,11 @@ void main() {
   _testSingle();
   _testSingleOrDefault();
   _testSkip();
+  _testSkipLast();
   _testSkipWhile();
   _testSum();
   _testTake();
+  _testTakeLast();
   _testTakeWhile();
   _testThenBy();
   _testToDictionary();
@@ -1034,6 +1036,42 @@ void _testSkip() {
   });
 }
 
+void _testSkipLast() {
+  test('SkipLast', () {
+    {
+      var data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      var expected = [0, 1, 2, 3, 4, 5, 6];
+      var query = data.skipLast(3);
+      var result = query;
+      expect(result, expected);
+    }
+    //
+    {
+      var data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      var expected = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      var query = data.skipLast(0);
+      var result = query;
+      expect(result, expected);
+    }
+    //
+    {
+      var data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      var expected = [];
+      var query = data.skipLast(20);
+      var result = query;
+      expect(result, expected);
+    }
+    //
+    {
+      var data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      var expected = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      var query = data.skipLast(-1);
+      var result = query;
+      expect(result, expected);
+    }
+  });
+}
+
 void _testSkipWhile() {
   test('SkipWhile', () {
     {
@@ -1136,6 +1174,42 @@ void _testTake() {
       var data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
       var expected = [];
       var query = data.take(0);
+      var result = query;
+      expect(result, expected);
+    }
+  });
+}
+
+void _testTakeLast() {
+  test('TakeLast', () {
+    {
+      var data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      var expected = [7, 8, 9];
+      var query = data.takeLast(3);
+      var result = query;
+      expect(result, expected);
+    }
+    //
+    {
+      var data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      var expected = [];
+      var query = data.takeLast(0);
+      var result = query;
+      expect(result, expected);
+    }
+    //
+    {
+      var data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      var expected = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      var query = data.takeLast(20);
+      var result = query;
+      expect(result, expected);
+    }
+    //
+    {
+      var data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      var expected = [];
+      var query = data.takeLast(-1);
       var result = query;
       expect(result, expected);
     }

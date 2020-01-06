@@ -1,6 +1,7 @@
 part of '../enumerable.dart';
 
 extension Enumerable<TSource> on Iterable<TSource> {
+  /// Applies an accumulator function over a sequence.
   TSource aggregate(TSource Function(TSource, TSource) func) {
     if (func == null) {
       throw ArgumentError.notNull('func');
@@ -25,6 +26,8 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return result;
   }
 
+  /// Applies an accumulator function over a sequence. The specified seed value
+  /// is used as the initial accumulator value.
   TAccumulate aggregate$1<TAccumulate>(
       TAccumulate seed, TAccumulate Function(TAccumulate, TSource) func) {
     if (func == null) {
@@ -40,6 +43,9 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return acc;
   }
 
+  /// Applies an accumulator function over a sequence. The specified seed value
+  /// is used as the initial accumulator value, and the specified function is
+  /// used to select the result value.
   TResult aggregate$2<TAccumulate, TResult>(
       TAccumulate seed,
       TAccumulate Function(TAccumulate, TSource) func,
@@ -61,6 +67,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return resultSelector(acc);
   }
 
+  /// Determines whether all elements of a sequence satisfy a condition.
   bool all(bool Function(TSource) predicate) {
     if (predicate == null) {
       throw ArgumentError.notNull('predicate');
@@ -76,6 +83,9 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return true;
   }
 
+  /// Determines whether a sequence contains any elements.
+  /// Or determines whether any element of a sequence satisfies a condition if
+  /// predicate was specified.
   bool any$1([bool Function(TSource) predicate]) {
     if (predicate == null) {
       return iterator.moveNext();
@@ -91,6 +101,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return false;
   }
 
+  /// Appends a value to the end of the sequence.
   Iterable<TSource> append(TSource element) {
     Iterable<TSource> generator() sync* {
       final it = iterator;
@@ -104,6 +115,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  ///	Computes the average of a sequence.
   double average([num Function(TSource) selector]) {
     if (this is! Iterable<num>) {
       _errorUnableToCompute<TSource>('average');
@@ -142,6 +154,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return sum as double;
   }
 
+  /// Casts the elements to the specified type.
   Iterable<TResult> cast$1<TResult>() {
     Iterable<TResult> generator() sync* {
       final it = iterator;
@@ -153,6 +166,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Concatenates two sequences.
   Iterable<TSource> concat(Iterable<TSource> other) {
     if (other == null) {
       throw ArgumentError.notNull('other');
@@ -173,6 +187,10 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Determines whether a sequence contains a specified element by using the
+  /// default equality comparer.
+  /// Or determines whether a sequence contains a specified element by using a
+  /// specified IEqualityComparer<T>.
   bool contains$1(TSource value, [IEqualityComparer<TSource> comparer]) {
     comparer ??= EqualityComparer<TSource>();
     final it = iterator;
@@ -185,6 +203,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return false;
   }
 
+  /// Returns the number of elements in a sequence.
   int count([bool Function(TSource) predicate]) {
     var count = 0;
     if (predicate == null) {
@@ -209,6 +228,8 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return count;
   }
 
+  /// Returns the elements of an Iterable<T>, or a default valued collection if
+  /// the sequence is empty.
   Iterable<TSource> defaultIfEmpty([TSource defaultValue]) {
     Iterable<TSource> generator() sync* {
       var empty = true;
@@ -226,6 +247,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Returns distinct elements from a sequence.
   Iterable<TSource> distinct([IEqualityComparer<TSource> comparer]) {
     comparer ??= EqualityComparer<TSource>();
     Iterable<TSource> generator() sync* {
@@ -243,6 +265,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Returns the element at a specified index in a sequence.
   TSource elementAt$1(int index) {
     if (index == null) {
       throw ArgumentError.notNull('index');
@@ -268,6 +291,8 @@ extension Enumerable<TSource> on Iterable<TSource> {
     throw RangeError.range(index, 0, counter - 1);
   }
 
+  /// Returns the element at a specified index in a sequence or a default value
+  /// if the index is out of range.
   TSource elementAtOrDefault(int index) {
     TSource result;
     if (index == null) {
@@ -298,6 +323,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return result;
   }
 
+  /// Produces the set difference of two sequences.
   Iterable<TSource> except(Iterable<TSource> other,
       [IEqualityComparer<TSource> comparer]) {
     if (other == null) {
@@ -319,6 +345,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Returns the first element of a sequence.
   TSource first$1([bool Function(TSource) predicate]) {
     final it = iterator;
     if (predicate == null) {
@@ -337,6 +364,11 @@ extension Enumerable<TSource> on Iterable<TSource> {
     throw _errorEmptySequence();
   }
 
+  /// Returns the first element of a sequence, or a default value if the
+  /// sequence contains no elements.
+  /// Or returns the first element of the sequence that satisfies a condition
+  /// or a default value if no such element is found if predicate was
+  /// specified.
   TSource firstOrDefault([bool Function(TSource) predicate]) {
     TSource result;
     final it = iterator;
@@ -447,6 +479,8 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Correlates the elements of two sequences based on equality of keys and
+  /// groups the results.
   Iterable<TResult> groupJoin<TInner, TKey, TResult>(
       Iterable<TInner> inner,
       TKey Function(TSource) outerKeySelector,
@@ -499,6 +533,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Produces the set intersection of two sequences.
   Iterable<TSource> intersect(Iterable<TSource> other,
       [IEqualityComparer<TSource> comparer]) {
     if (other == null) {
@@ -529,6 +564,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Correlates the elements of two sequences based on matching keys.
   Iterable<TResult> join$1<TInner, TKey, TResult>(
       Iterable<TInner> inner,
       TKey Function(TSource) outerKeySelector,
@@ -584,6 +620,9 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Returns the last element of a sequence.
+  /// Or returns the last element of a sequence that satisfies a specified
+  /// condition if predicate was specified.
   TSource last$1([bool Function(TSource) predicate]) {
     final it = iterator;
     var length = 0;
@@ -610,6 +649,10 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return result;
   }
 
+  /// Returns the last element of a sequence, or a default value if the
+  /// sequence contains no elements.
+  /// Or returns the last element of a sequence that satisfies a condition or a
+  /// default value if no such element is found if predicate was specified.
   TSource lastOrDefault([bool Function(TSource) predicate]) {
     final it = iterator;
     TSource result;
@@ -629,10 +672,13 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return result;
   }
 
+  /// Returns the maximum value in a sequence of values.
   TSource max() {
     return (this as Iterable<num>).max$1<num>((e) => e) as TSource;
   }
 
+  /// Invokes a transform function on each element of a sequence and returns
+  /// the maximum value.
   TResult max$1<TResult extends num>(TResult Function(TSource) selector) {
     if (selector == null) {
       throw ArgumentError.notNull('selector');
@@ -641,14 +687,18 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return _computeNullable<TResult>('max', (r, v) => r < v ? v : r, selector);
   }
 
+  /// Returns the minimum value in a sequence of values.
   TSource min() {
     return (this as Iterable<num>).min$1<num>((e) => e) as TSource;
   }
 
+  /// Invokes a transform function on each element of a sequence and returns
+  /// the minimum value.
   TResult min$1<TResult extends num>(TResult Function(TSource) selector) {
     return _computeNullable<TResult>('min', (r, v) => r > v ? v : r, selector);
   }
 
+  /// Filters the elements of an Iterable<T> based on a specified type.
   Iterable<TResult> ofType<TResult>() {
     Iterable<TResult> generator() sync* {
       final it = iterator;
@@ -663,12 +713,14 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Sorts the elements of a sequence in ascending order according to a key.
   IOrderedIterable<TSource> orderBy<TKey>(TKey Function(TSource) keySelector,
       [IComparer<TKey> comparer]) {
     return _OrderedIterable<TSource, TKey>(
         this, keySelector, comparer, false, null);
   }
 
+  /// Sorts the elements of a sequence in ascending order according to a key.
   IOrderedIterable<TSource> orderByDescending<TKey>(
       TKey Function(TSource) keySelector,
       [IComparer<TKey> comparer]) {
@@ -676,6 +728,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
         this, keySelector, comparer, true, null);
   }
 
+  /// Adds a value to the beginning of the sequence.
   Iterable<TSource> prepend(TSource element) {
     Iterable<TSource> generator() sync* {
       yield element;
@@ -688,6 +741,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Inverts the order of the elements in a sequence.
   Iterable<TSource> reverse() {
     Iterable<TSource> generator() sync* {
       List<TSource> list;
@@ -706,6 +760,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Projects each element of a sequence into a new form.
   Iterable<TResult> select<TResult>(TResult Function(TSource) selector) {
     if (selector == null) {
       throw ArgumentError.notNull('selector');
@@ -721,6 +776,8 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Projects each element of a sequence into a new form by incorporating the
+  /// element's index.
   Iterable<TResult> select$1<TResult>(TResult Function(TSource, int) selector) {
     if (selector == null) {
       throw ArgumentError.notNull('selector');
@@ -829,6 +886,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Determines whether two sequences are equal by comparing the elements.
   bool sequenceEqual(Iterable<TSource> other,
       [IEqualityComparer<TSource> comparer]) {
     if (other == null) {
@@ -865,6 +923,11 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return true;
   }
 
+  /// Returns the only element of a sequence, and throws an exception if there
+  /// is not exactly one element in the sequence.
+  /// Or returns the only element of a sequence that satisfies a specified
+  /// condition, and throws an exception if more than one such element exists
+  /// if predicate was specified.
   TSource single$1([bool Function(TSource) predicate]) {
     TSource result;
     final it = iterator;
@@ -899,6 +962,13 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return result;
   }
 
+  /// Returns the only element of a sequence, or a default value if the
+  /// sequence is empty; this method throws an exception if there is more than
+  /// one element in the sequence.
+  /// Or returns the only element of a sequence that satisfies a specified
+  /// condition or a default value if no such element exists; this method
+  /// throws an exception if more than one element satisfies the condition if
+  /// predicate was specified.
   TSource singleOrDefault([bool Function(TSource) predicate]) {
     TSource result;
     final it = iterator;
@@ -933,6 +1003,19 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return result;
   }
 
+  /// Returns a new enumerable collection that contains the elements from
+  /// source with the last count elements of the source collection omitted.
+  Iterable<TSource> skipLast(int count) {
+    if (count == null) {
+      throw ArgumentError.notNull('count');
+    }
+
+    count = _math.max(0, count);
+    return take(_math.max(0, length - count));
+  }
+
+  /// Bypasses a specified number of elements in a sequence and then returns
+  /// the remaining elements.
   Iterable<TSource> skip$1(int count) {
     if (count == null) {
       throw ArgumentError.notNull('count');
@@ -955,6 +1038,8 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Bypasses elements in a sequence as long as a specified condition is true
+  /// and then returns the remaining elements.
   Iterable<TSource> skipWhile$1(bool Function(TSource) predicate) {
     if (predicate == null) {
       throw ArgumentError.notNull('predicate');
@@ -978,6 +1063,9 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Bypasses elements in a sequence as long as a specified condition is true
+  /// nd then returns the remaining elements. The element's index is used in
+  /// the logic of the predicate function.
   Iterable<TSource> skipWhile$2(bool Function(TSource, int) predicate) {
     if (predicate == null) {
       throw ArgumentError.notNull('predicate');
@@ -1002,14 +1090,19 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Computes the sum of a sequence of values.
   TSource sum() {
     return (this as Iterable<num>).sum$1<num>((e) => e) as TSource;
   }
 
+  /// Computes the sum of the sequence of values that are obtained by invoking
+  /// a transform function on each element of the input sequence.
   TResult sum$1<TResult extends num>(TResult Function(TSource) selector) {
     return _computeNullable<TResult>('sum', (r, v) => r + v, selector);
   }
 
+  /// Returns a specified number of contiguous elements from the start of a
+  /// sequence.
   Iterable<TSource> take$1(int count) {
     if (count == null) {
       throw ArgumentError.notNull('count');
@@ -1029,6 +1122,18 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Returns a new enumerable collection that contains the last count elements
+  /// from source.
+  Iterable<TSource> takeLast(int count) {
+    if (count == null) {
+      throw ArgumentError.notNull('count');
+    }
+
+    return skip(_math.max(0, length - count));
+  }
+
+  /// Returns elements from a sequence as long as a specified condition is
+  /// true.
   Iterable<TSource> takeWhile$1(bool Function(TSource) predicate) {
     if (predicate == null) {
       throw ArgumentError.notNull('predicate');
@@ -1048,6 +1153,8 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Returns elements from a sequence as long as a specified condition is
+  /// true. The element's index is used in the logic of the predicate function.
   Iterable<TSource> takeWhile$2(bool Function(TSource, int) predicate) {
     if (predicate == null) {
       throw ArgumentError.notNull('predicate');
@@ -1163,6 +1270,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return Lookup<TKey, TElement>._internal(dict);
   }
 
+  /// Produces the set union of two sequences.
   Iterable<TSource> union(Iterable<TSource> other,
       [IEqualityComparer<TSource> comparer]) {
     if (other == null) {
@@ -1193,6 +1301,7 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Filters a sequence of values based on a predicate.
   Iterable<TSource> where$1(bool Function(TSource) predicate) {
     if (predicate == null) {
       throw ArgumentError.notNull('predicate');
@@ -1211,6 +1320,8 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Filters a sequence of values based on a predicate. Each element's index
+  /// is used in the logic of the predicate function.
   Iterable<TSource> where$2(bool Function(TSource, int) predicate) {
     if (predicate == null) {
       throw ArgumentError.notNull('predicate');
@@ -1230,6 +1341,8 @@ extension Enumerable<TSource> on Iterable<TSource> {
     return generator();
   }
 
+  /// Applies a specified function to the corresponding elements of two
+  /// sequences, producing a sequence of the results.
   Iterable zip<TSecond, TResult>(Iterable<TSecond> second,
       TResult Function(TSource, TSecond) resultSelector) {
     if (second == null) {

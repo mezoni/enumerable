@@ -1,6 +1,5 @@
 name: enumerable
-version: 0.1.1
-author: Andrew Mezoni <andrew.mezoni@gmail.com>
+version: 0.1.2
 description: The `Enumerable` static methods extension on `Iterable` (inspired by Microsoft Enumerable).
 homepage: https://github.com/mezoni/enumerable
 environment:

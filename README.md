@@ -3,7 +3,7 @@ enumerable
 
 The `Enumerable` static methods extension on `Iterable` (inspired by Microsoft Enumerable).
 
-Version 0.1.1
+Version 0.1.2
 
 Classes  
 
@@ -50,9 +50,11 @@ sequenceEqual
 single  
 singleOrDefault  
 skip  
+skipLast  
 skipWhile  
 sum  
 take  
+takeLast  
 takeWhile  
 toLookup  
 union  
